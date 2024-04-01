@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculadora</title>
+    <link rel="shortcut icon" href="imagens/favicon/favicon.ico"
+    type="image/x-icon">
+    <script>
+        function somar (){
+            var n1 = document.querySelectorAll("input")[0].value
+            var n2 = document.querySelectorAll("input")[1].value
+            var soma = parseFloat(n1) + parseFloat(n2);
+            alert(soma);
+        }
+        function subtrair (){
+            var n1 = document.querySelectorAll("input")[0].value
+            var n2 = document.querySelectorAll("input")[1].value
+            var subtrai = parseFloat(n1) - parseFloat(n2);
+            alert(subtrai);
+        }
+        function multiplicar (){
+            var n1 = document.querySelectorAll("input")[0].value
+            var n2 = document.querySelectorAll("input")[1].value
+            var multiplica = parseFloat(n1) * parseFloat(n2);
+            alert(multiplica);
+        }
+        function dividir (){
+            var n1 = document.querySelectorAll("input")[0].value
+            var n2 = document.querySelectorAll("input")[1].value
+            var divide = parseFloat(n1) /  parseFloat(n2);
+            alert(divide);
+
+            if(n2 !=0){
+                
+            }
+        }
+    </script>
+    <style>
+        body{
+            background-color: rgb(201, 139, 227);
+        }
+        h1 {
+            color: rgb(63, 8, 72); 
+            text-align: center;
+            font-size: 80px;
+            
+            }  
+          
+
+    </style>
+</head>
+<body>
+    <center>
+    <h1>calculadora</h1>
+    <p>
+        <input type="number" placeholder="insira o primeiro número"
+        name="n1" id="n1">
+        <input type="number" placeholder="insira o segundo número"
+        name="n2" id="n2"> 
+        <p>
+            <button type="button" onclick="somar()">somar</button>
+            <button type="button" onclick="subtrair()">subtrair</button>
+            <button type="button" onclick="multiplicar()">multiplicar</button>
+            <button type="button" onclick="dividir()">dividir</button>
+        </p>
+     </center>
+    </p>
+    
+
+</body>
+</html>

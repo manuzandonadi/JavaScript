@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Gastos de Viagem</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #972ed4;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+<center>
+<h2>Calculadora de Gastos de Viagem</h2>
+
+<form id="calculatorForm">
+    <label for="tipoCombustivel">Tipo de Combustível:</label>
+    <select id="tipoCombustivel" name="tipoCombustivel">
+        <option value="gasolina">Gasolina</option>
+        <option value="etanol">Etanol</option> <!-- Corrigido o valor do option -->
+        <option value="diesel">Diesel</option>
+    </select><br>
+
+    <label for="consumo">Consumo (km/l):</label>
+    <input type="number" id="consumo" name="consumo" step="0.01" required><br>
+
+    <label for="distancia">Distância (km):</label>
+    <input type="number" id="distancia" name="distancia" required><br>
+
+    <input type="submit" value="Calcular">
+</form>
+
+<div id="resultado"></div>
+
+<script>
+    document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var tipoCombustivel = document.getElementById('tipoCombustivel').value;
+        var consumo = parseFloat(document.getElementById('consumo').value);
+        var distancia = parseFloat(document.getElementById('distancia').value);
+
+        var custoCombustivel;
+
+        // Adicionando o valor e tipo de combustível selecionado
+        var tipoCombustivelSelecionado;
+        if (tipoCombustivel === 'gasolina') {
+            custoCombustivel = 5.58; // Preço da gasolina por litro
+            tipoCombustivelSelecionado = 'Gasolina';
+        } else if (tipoCombustivel === 'etanol') {
+            custoCombustivel = 3.42; // Preço do etanol por litro
+            tipoCombustivelSelecionado = 'Etanol';
+        } else {
+            custoCombustivel = 5.85; // Preço do diesel por litro
+            tipoCombustivelSelecionado = 'Diesel';
+        }
+
+        var gastoTotal = (distancia / consumo) * custoCombustivel;
+        document.getElementById('resultado').innerHTML = 'O gasto total da viagem é de R$ ' + gastoTotal.toFixed(2) + ' utilizando ' + tipoCombustivelSelecionado + ' a R$' + custoCombustivel;
+    });
+</script>
+</center>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Gastos de Viagem</title>
+<style>
+    body {
+        font-family: Arial, sans-serif; /* Estilo de fonte padrão */
+    }
+    form {
+        max-width: 400px; /* Largura máxima do formulário */
+        margin: 0 auto; /* Centraliza o formulário horizontalmente */
+    }
+    input[type="number"] {
+        width: 100%; /* Largura total para campos de número */
+        padding: 8px; /* Espaçamento interno */
+        margin: 5px 0; /* Espaçamento externo (margem) */
+        box-sizing: border-box; /* Garante que o tamanho total do elemento inclua padding e bordas */
+    }
+    input[type="submit"] {
+        width: 100%; /* Largura total para botões de envio */
+        background-color: #972ed4; /* Cor de fundo */
+        color: white; /* Cor do texto */
+        padding: 10px 20px; /* Espaçamento interno */
+        border: none; /* Remove a borda */
+        border-radius: 4px; /* Borda arredondada */
+        font-size: 16px; /* Tamanho da fonte */
+    }
+</style>
+</head>
+<body>
+<center>
+<h2>Calculadora de Gastos de Viagem</h2>
+
+<!-- Formulário para inserir dados -->
+<form id="calculatorForm">
+    <label for="tipoCombustivel">Tipo de Combustível:</label>
+    <!-- Dropdown para selecionar o tipo de combustível -->
+    <select id="tipoCombustivel" name="tipoCombustivel">
+        <option value="gasolina">Gasolina</option>
+        <option value="etanol">Etanol</option> 
+        <option value="diesel">Diesel</option>
+    </select><br>
+
+    <label for="consumo">Consumo (km/l):</label>
+    <!-- Campo para inserir o consumo do veículo -->
+    <input type="number" id="consumo" name="consumo" step="0.01" required><br>
+
+    <label for="distancia">Distância (km):</label>
+    <!-- Campo para inserir a distância da viagem -->
+    <input type="number" id="distancia" name="distancia" required><br>
+
+    <!-- Botão para calcular o gasto -->
+    <input type="submit" value="Calcular">
+</form>
+
+<!-- Local para mostrar o resultado -->
+<div id="resultado"></div>
+
+<script>
+    // Adiciona um listener para o evento de submissão do formulário
+    document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do formulário
+
+        // Obtém os valores inseridos pelo usuário
+        var tipoCombustivel = document.getElementById('tipoCombustivel').value;
+        var consumo = parseFloat(document.getElementById('consumo').value);
+        var distancia = parseFloat(document.getElementById('distancia').value);
+
+        var custoCombustivel; // Variável para armazenar o custo do combustível
+
+        // Adicionando o valor e tipo de combustível selecionado
+        var tipoCombustivelSelecionado;
+        if (tipoCombustivel === 'gasolina') {
+            custoCombustivel = 5.58; // Preço da gasolina por litro
+            tipoCombustivelSelecionado = 'Gasolina';
+        } else if (tipoCombustivel === 'etanol') {
+            custoCombustivel = 3.42; // Preço do etanol por litro
+            tipoCombustivelSelecionado = 'Etanol';
+        } else {
+            custoCombustivel = 5.85; // Preço do diesel por litro
+            tipoCombustivelSelecionado = 'Diesel';
+        }
+
+        // Calcula o gasto total da viagem
+        var gastoTotal = (distancia / consumo) * custoCombustivel;
+
+        // Mostra o resultado na página
+        document.getElementById('resultado').innerHTML = 'O gasto total da viagem é de R$ ' + gastoTotal.toFixed(2) + ' utilizando ' + tipoCombustivelSelecionado + ' a R$' + custoCombustivel;
+    });
+</script>
+</center>
+</body>
+</html>
